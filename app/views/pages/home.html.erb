@@ -1,2 +1,32 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container" data-controller="geocoder">
+
+<%# 1. Create a form with user input that inputs the address and also submit with a Geocode button %>
+  <%= form_tag("/geocode",
+              method: "get",
+              class: "d-flex my-5 form",
+              data: {
+                  action:"submit->geocoder#showMapAndCoordinates",
+                  geocoder_target: "formElement"
+                  }) do %>
+      <input type="text"
+              id="input"
+              name="input"
+              class="form-control flex-grow-1 me-2"
+              placeholder="Type an address"
+              data-geocoder-target="userInput"
+              >
+    <%= submit_tag("Geocode!", class:"btn btn-primary") %>
+  <% end %>
+
+  <p class="font-monospace lead text-center fw-bol coordinates" data-geocoder-target="coordinates">
+    <%# coordinates %>
+  </p>
+
+  <div id="map">
+    <%# map goes here %>
+  </div>
+
+<%# 2. We need a p empthy for the coordinates %>
+<%# 3. Add a div for map %>
+
+</div>
